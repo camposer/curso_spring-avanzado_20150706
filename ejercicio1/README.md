@@ -8,8 +8,9 @@
 
 2. Crear una GUI simple de consola que pida la operación a ejecutar, los dos operandos e imprimir el resultado.
 
-Al menos la instancia de Calculadora debe ser creada con Spring.
+NOTA: Al menos la instancia de Calculadora debe ser creada con Spring.
 
+```
 Ejemplo de GUI:
 	1. Sumar
 	2. Restar
@@ -21,6 +22,7 @@ Ejemplo de GUI:
 	a? 1
 	b? 1
 	a + b = 2
+```
 
 3. Refactorizar el código para que funcione con anotaciones
 
