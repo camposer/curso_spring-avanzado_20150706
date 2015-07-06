@@ -19,3 +19,4 @@ CREATE TABLE ordenador (
         FOREIGN KEY (persona_id) REFERENCES persona(id)
 );
 
+SELECT * FROM persona;
