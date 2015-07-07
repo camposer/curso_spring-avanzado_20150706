@@ -9,7 +9,9 @@
 	- Implementar PersonaDaoImpl (con su interfaz correspondiente)
 	- Implementar PersonaServiceImpl (con su interfaz correspondiente)
 
-3. Implementar el CRUD+ para Persona
+3. Completar la prueba de PersonaDao. Añadir: modificar, eliminar, obtener y listar. Puede guiarse con la prueba anterior. Importante: familiarizarse con el POM y la clase JpaConfig (@EnableTransactionManagement)
+
+4. Implementar el CRUD+ para Persona
 	3.1. Implementar la lista (+) de personas (acción: /persona/index.do)
 	3.2. Implementar el agregar (C) de personas
 	3.3. Implementar el eliminar (D) de personas. Si tiene ordenadores asociados, estos deben borrarse previamente de forma automática.
@@ -18,14 +20,14 @@
 
 NOTA: Para ejecutar: http://localhost:8080/ejercicio2/persona/index.do
 
-4. Implementar el CRUD+ para Ordenador. Seguir el mismo orden de implementación aplicado en CRUD+ de Persona.
+5. Implementar el CRUD+ para Ordenador. Seguir el mismo orden de implementación aplicado en CRUD+ de Persona.
 - BD
 - Modelo
 - DAO
 - Servicio
 - Front
 
-5. Implementar API REST para Persona y Ordenador
+6. Implementar API REST para Persona y Ordenador
 
 
 
