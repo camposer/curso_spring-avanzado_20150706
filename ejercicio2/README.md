@@ -18,7 +18,7 @@
 	- Implementar el mostrar (R) de personas
 	- Implementar el modificar (U) de personas
 
-NOTA: Para ejecutar: http://localhost:8080/ejercicio2/persona/index.do
+NOTA: Para ejecutar: http://localhost:8080/ejercicio2/persona/inicio.do
 
 5. Implementar el CRUD+ para Ordenador. Seguir el mismo orden de implementación aplicado en CRUD+ de Persona.
 	- BD
