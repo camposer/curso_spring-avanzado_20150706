@@ -12,8 +12,8 @@ Cómo configurar Spring MVC
 
 Para iniciar el proyecto:
 	- Descargar y descomprimir tomcat
-	- Dentro de la perspectiva JEE. Clic derecho sobre la vista Servers -> Add new Server -> Apache Tomcat 7. Indicar la carpeta donde se descomprimió el tomcat
-	- Clic derecho sobre el servidor y seleccionar "Add and remove". Agregar el proyecto
+	- Dentro de la perspectiva JEE. Clic derecho sobre la vista Servers -> New -> Server -> Apache Tomcat 7. Indicar la carpeta donde se descomprimió el tomcat
+	- Clic derecho sobre el servidor y seleccionar "Add and Remove". Agregar el proyecto
 	- Clic derecho sobre el servidor y seleccionar "Start server"
 	- En el navegador ejecutar:
 		http://localhost:8080/ejercicio2/holaMundo.do
