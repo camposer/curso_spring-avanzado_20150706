@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -12,23 +11,30 @@ import javax.persistence.Query;
 import model.Persona;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class BasicoTest {
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
+	private static EntityManager entityManager;
 	private EntityTransaction entityTransaction;
 
-	public BasicoTest() {
-		entityManagerFactory = 
-				Persistence.createEntityManagerFactory("ejercicio2"); 
+	@BeforeClass
+	public static void beforeClass() {
+		entityManager = Persistence
+				.createEntityManagerFactory("ejercicio2-test")
+				.createEntityManager(); 
 	}
 	
+	@AfterClass
+	public static void afterClass() {
+		entityManager.close();
+	}
+
 	@Before
 	public void before() {
-		entityManager = entityManagerFactory.createEntityManager();
 		entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 	}
@@ -36,7 +42,6 @@ public class BasicoTest {
 	@After
 	public void after() {
 		entityTransaction.rollback();
-		entityManager.close();
 	}
 	
 	@Test
@@ -110,7 +115,7 @@ public class BasicoTest {
 				entityManager.createNamedQuery("Persona.findAll")
 					.getResultList();
 		
-		Assert.assertTrue(personas.size() == 1);
+		Assert.assertTrue(personas.size() > 0);
 	}
 
 	@Test

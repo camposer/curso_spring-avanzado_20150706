@@ -7,35 +7,64 @@
 	<packaging>war</packaging>
 
 	<properties>
+		<spring.version>4.1.4.RELEASE</spring.version>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
 	</properties>
 
 	<dependencies>
+		<!-- Spring CORE -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- Spring ORM @PersistenceContext @Transactional -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- Spring Testing -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- API de Servlets. Independencia del Contenedor de Servlets -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
+		<!-- Hibernate con JPA -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.3.10.Final</version>
 		</dependency>
+		
+		<!-- Derby client! -->
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derbyclient</artifactId>
 			<version>10.10.1.1</version>
 		</dependency>
-		
+
+		<!-- Base de Datos en Memoria -->
 		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0.10</version>
-			<scope>test</scope>
 		</dependency>
+		
+		<!-- Framework XUnit de Java -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
