@@ -12,11 +12,11 @@
 3. Completar la prueba de PersonaDao. Añadir: modificar, eliminar, obtener y listar. Puede guiarse con la prueba anterior. Importante: familiarizarse con el POM y la clase JpaConfig (@EnableTransactionManagement)
 
 4. Implementar el CRUD+ para Persona
-4.1. Implementar la lista (+) de personas (acción: /persona/index.do)
-4.2. Implementar el agregar (C) de personas
-4.3. Implementar el eliminar (D) de personas. Si tiene ordenadores asociados, estos deben borrarse previamente de forma automática.
-4.4. Implementar el mostrar (R) de personas
-4.5. Implementar el modificar (U) de personas
+	- Implementar la lista (+) de personas (acción: /persona/index.do)
+	- Implementar el agregar (C) de personas
+	- Implementar el eliminar (D) de personas. Si tiene ordenadores asociados, estos deben borrarse previamente de forma automática.
+	- Implementar el mostrar (R) de personas
+	- Implementar el modificar (U) de personas
 
 NOTA: Para ejecutar: http://localhost:8080/ejercicio2/persona/index.do
 
