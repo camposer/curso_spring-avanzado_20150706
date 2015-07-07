@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<h1>Personas</h1>
-		
+
 		<form class="form-horizontal">
 			<div class="form-group">
 				<label for="nombre" class="col-sm-2 control-label">Nombre</label>
@@ -20,7 +20,7 @@
 						placeholder="Nombre">
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<label for="apellido" class="col-sm-2 control-label">Apellido</label>
 				<div class="col-sm-10">
@@ -28,24 +28,26 @@
 						placeholder="Apellido">
 				</div>
 			</div>
-			
+
 			<div class="form-group">
-				<label for="fechaNacimiento" class="col-sm-2 control-label">Fecha de nacimiento</label>
+				<label for="fechaNacimiento" class="col-sm-2 control-label">Fecha
+					de nacimiento</label>
+				
 				<div class="col-sm-10">
-					<input type="date" class="form-control" id="fechaNacimiento"
-						placeholder="Fecha de nacimiento">
+					<input type="text" class="form-control datepicker active" id="fechaNacimiento"
+						placeholder="Fecha de nacimiento" data-date-format="yyyy-mm-dd" readonly="readonly">
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default">Guardar</button>
 				</div>
 			</div>
 		</form>
-	
+
 		<hr>
-		
+
 		<table class="table table-striped">
 			<tr>
 				<th>Id</th>
@@ -82,7 +84,14 @@
 		</table>
 	</div>
 
+	<script src="/ejercicio2/js/jquery.js"></script>
 	<script src="/ejercicio2/js/bootstrap.js"></script>
+	<script src="/ejercicio2/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('.datepicker').datepicker();
+		});
+	</script>
 </body>
 </html>
 
