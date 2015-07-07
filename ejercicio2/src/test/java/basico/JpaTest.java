@@ -1,4 +1,4 @@
-package jpa;
+package basico;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class BasicoTest {
+public class JpaTest {
 	private static EntityManager entityManager;
 	private EntityTransaction entityTransaction;
 
