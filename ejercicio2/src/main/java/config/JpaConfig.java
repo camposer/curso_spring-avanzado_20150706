@@ -1,6 +1,5 @@
 package config;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -20,13 +19,7 @@ public class JpaConfig {
 	}
 
 	@Bean
-	public EntityManager entityManager() {
-		return entityManagerFactory().createEntityManager();
-	}
-
-	@Bean
 	public PlatformTransactionManager transactionManager() {
 		return new JpaTransactionManager(entityManagerFactory());
 	}
-
 }

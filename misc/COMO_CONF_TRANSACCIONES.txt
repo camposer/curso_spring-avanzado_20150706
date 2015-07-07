@@ -1,0 +1,7 @@
+Cómo configurar transacciones con Spring
+========================================
+
+1. Añadir al POM spring-orm
+2. Habilitar el manejo de transacciones de Spring (@EnableTransactionManagement) y cargar en el contexto de Spring: entityManagerFactory y transactionManager. Ver JpaConfig
+3. Inyectar el EntityManager donde se necesite con la anotación @PersistenceContext
+4. Añadir @org.springframework.transaction.annotation.Transactional sobre el método o clase que desea hacer transaccional
