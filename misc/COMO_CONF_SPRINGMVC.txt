@@ -1,0 +1,19 @@
+Cómo configurar Spring MVC
+==========================
+
+1. Añadir al POM spring-webmvc
+2. Añadir DispatcherServlet con su mapping al web.xml. Ver /WEB-INF/web.xml
+3. Añadir Spring XML Config a /WEB-INF/mvc-servlet.xml (mvc es el nombre asignado al DispatcherServlet)
+	- Añadir el espacio de nombres context
+	- Habilitar uso de anotaciones
+	- Indicar paquetes a escanear
+4. Escribir controller
+	- La clase debe estar dentro del paquete indicado en mvc-servlet.xml y contener los @RequestMapping necesarios
+
+Para iniciar el proyecto:
+	- Descargar y descomprimir tomcat
+	- Dentro de la perspectiva JEE. Clic derecho sobre la vista Servers -> Add new Server -> Apache Tomcat 7. Indicar la carpeta donde se descomprimió el tomcat
+	- Clic derecho sobre el servidor y seleccionar "Add and remove". Agregar el proyecto
+	- Clic derecho sobre el servidor y seleccionar "Start server"
+	- En el navegador ejecutar:
+		http://localhost:8080/ejercicio2/holaMundo.do

@@ -35,6 +35,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
 		<!-- API de Servlets. Independencia del Contenedor de Servlets -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
