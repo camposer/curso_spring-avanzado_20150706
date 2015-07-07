@@ -8,4 +8,6 @@
 
 	<context:annotation-config/><!-- Habilita el uso de anotaciones -->
 	<context:component-scan base-package="controller"/><!-- Ubicación de controladores -->
+	<context:component-scan base-package="service,dao"/>
+	<context:component-scan base-package="config"/>
 </beans>
