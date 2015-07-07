@@ -59,9 +59,10 @@
 
 		<!-- Base de Datos en Memoria -->
 		<dependency>
-			<groupId>hsqldb</groupId>
+			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.10</version>
+			<version>2.3.3</version>
+			<scope>test</scope>
 		</dependency>
 		
 		<!-- Framework XUnit de Java -->
