@@ -1,27 +1,44 @@
 package controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import model.Persona;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import service.PersonaService;
+import controller.editor.FechaEditor;
 import controller.form.PersonaForm;
+import controller.validator.PersonaFormValidator;
 
 @Controller
 @RequestMapping("/persona/*")
 public class PersonaController {
-	private static final String DATE_MASK = "yyyy-MM-dd";
 	@Autowired
 	private PersonaService personaService;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new FechaEditor());
+        binder.addValidators(new PersonaFormValidator());
+    }
+	
+	@ModelAttribute("personaForm")
+	public PersonaForm getPersonaForm() {
+		return new PersonaForm();
+	}
 	
 	@RequestMapping({ "", "inicio" })
 	public String inicio(Model model) {
@@ -34,34 +51,16 @@ public class PersonaController {
 	}
 
 	@RequestMapping("guardar")
-	public String guardar(PersonaForm personaForm, Model model) {
-		// TODO Refactorizar validaciones y enviar a otro método
-		List<String> errores = new ArrayList<String>();
-		Date fechaNacimiento = null;
+	public String guardar(Model model, 
+			@ModelAttribute("personaForm") @Valid PersonaForm personaForm,
+			BindingResult result) {
 		
-		if (personaForm.getNombre() == null || 
-				personaForm.getNombre().trim().equals("") || 
-				personaForm.getNombre().trim().length() < 3)
-			errores.add("Nombre inválido");
-		
-		if (personaForm.getApellido() == null || 
-				personaForm.getApellido().trim().equals("") || 
-				personaForm.getApellido().trim().length() < 3)
-			errores.add("Apellido inválido");
-
-		try {
-			fechaNacimiento = 
-					new SimpleDateFormat(DATE_MASK).parse(personaForm.getFechaNacimiento());
-		} catch (Exception e) {
-			errores.add("Fecha de nacimiento inválida");
-		}
-
-		if (errores.size() == 0) { 
+		if (!result.hasErrors()) { 
 			Persona p = new Persona();
 			p.setId(personaForm.getId());
 			p.setNombre(personaForm.getNombre());
 			p.setApellido(personaForm.getApellido());
-			p.setFechaNacimiento(fechaNacimiento);
+			p.setFechaNacimiento(personaForm.getFechaNacimiento());
 
 			try {
 				if (p.getId() == null)
@@ -70,15 +69,13 @@ public class PersonaController {
 					personaService.modificarPersona(p);
 			} catch (Exception e) {
 				e.printStackTrace();
-				errores.add("Error al agregar en BD");
+				result.addError(null);
 			}
 		}
 		
-		if (errores.size() == 0) { // success
+		if (!result.hasErrors()) { // success
 			return "redirect:/persona/inicio.do";
 		} else {
-			model.addAttribute("errores", errores);
-			model.addAttribute("personaForm", personaForm);
 			init(model);
 			return "forward:/WEB-INF/jsp/persona/inicio.jsp";
 		}
@@ -122,13 +119,11 @@ public class PersonaController {
 		}
 		
 		if (errores.size() == 0) { // success
-			PersonaForm personaForm = new PersonaForm();
+			PersonaForm personaForm = getPersonaForm();
 			personaForm.setId(p.getId());
 			personaForm.setNombre(p.getNombre());
 			personaForm.setApellido(p.getApellido());
-			if (p.getFechaNacimiento() != null)
-				personaForm.setFechaNacimiento(
-					new SimpleDateFormat(DATE_MASK).format(p.getFechaNacimiento()));
+			personaForm.setFechaNacimiento(p.getFechaNacimiento());
 			
 			model.addAttribute("personaForm", personaForm);
 		} else { // error

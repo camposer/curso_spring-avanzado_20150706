@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +14,14 @@
 	<div class="container">
 		<h1>Personas</h1>
 
-		<form class="form-horizontal" action="guardar.do" method="post">
-			<input type="text" name="id" value="${personaForm.id}">
+		<form:form cssClass="form-horizontal" 
+				action="guardar.do" method="post" commandName="personaForm">
+			<form:hidden path="id"/>
 		
+			<c:if test="${not empty errores}">
+				<form:errors path="*"></form:errors>	
+			</c:if>	
+
 			<c:if test="${not empty errores}">
 				<div class="form-group">
 					<div class="alert alert-danger" role="alert">
@@ -29,8 +35,7 @@
 			<div class="form-group">
 				<label for="nombre" class="col-sm-2 control-label">Nombre</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nombre" name="nombre" value="${personaForm.nombre}"
-						placeholder="Nombre">
+					<form:input path="nombre" cssClass="form-control" placeholder="Nombre" />
 				</div>
 			</div>
 
@@ -47,8 +52,7 @@
 					de nacimiento</label>
 				
 				<div class="col-sm-10">
-					<input type="text" class="form-control datepicker active" id="fechaNacimiento" name="fechaNacimiento"
-						placeholder="Fecha de nacimiento" data-date-format="yyyy-mm-dd" readonly="readonly" value="${personaForm.fechaNacimiento}">
+					<form:input path="fechaNacimiento" cssClass="form-control datepicker active" placeholder="Fecha de nacimiento" readonly="readonly" data-date-format="yyyy-mm-dd" />
 				</div>
 			</div>
 
@@ -57,7 +61,7 @@
 					<button type="submit" class="btn btn-default">Guardar</button>
 				</div>
 			</div>
-		</form>
+		</form:form>
 
 		<hr>
 
