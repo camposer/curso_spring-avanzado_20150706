@@ -17,6 +17,7 @@
 	- Implementar el eliminar (D) de personas. Si tiene ordenadores asociados, estos deben borrarse previamente de forma automática.
 	- Implementar el mostrar (R) de personas
 	- Implementar el modificar (U) de personas
+	- Agregar al listado de personas, una columna que muestre los ordenadores que cada una tiene. Para ver este comportamiento tendrá que agregar algunos ordenadores a la BD
 
 NOTA: Para ejecutar: http://localhost:8080/ejercicio2/persona/inicio.do
 
