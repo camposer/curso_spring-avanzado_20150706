@@ -1,8 +1,6 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -16,7 +14,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import service.PersonaService;
 import controller.editor.FechaEditor;
@@ -83,20 +80,20 @@ public class PersonaController {
 	}
 	
 	@RequestMapping("eliminar")
-	public String eliminar(@RequestParam Integer id, Model model) {
-		List<String> errores = new ArrayList<String>();
+	public String eliminar(Model model, 
+			@ModelAttribute("personaForm") PersonaForm personaForm,
+			BindingResult result) {
 
 		try {
-			personaService.eliminarPersona(id);
+			personaService.eliminarPersona(personaForm.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
-			errores.add("Error eliminando la persona de BD");
+			result.rejectValue(null, null, "Error eliminando la persona de BD");
 		}
 		
-		if (errores.size() == 0) { // success
+		if (!result.hasErrors()) { // success
 			return "redirect:/persona/inicio.do";
 		} else { // error
-			model.addAttribute("errores", errores);
 			init(model);
 			return "forward:/WEB-INF/jsp/persona/inicio.jsp";
 		}
@@ -104,31 +101,27 @@ public class PersonaController {
 	}
 
 	@RequestMapping("mostrar")
-	public String mostrar(@RequestParam Integer id, Model model) {
+	public String mostrar(Model model, 
+			@ModelAttribute("personaForm") PersonaForm personaForm,
+			BindingResult result) {
 		Persona p = null;
-		List<String> errores = new ArrayList<String>();
 
 		try {
-			p = personaService.obtenerPersona(id);
+			p = personaService.obtenerPersona(personaForm.getId());
 			
 			if (p == null)
-				errores.add("No existe una persona para el id indicado");
+				result.rejectValue(null, null, "No existe una persona para el id indicado");
 		} catch (Exception e) {
 			e.printStackTrace();
-			errores.add("Error obteniendo la persona de BD");
+			result.rejectValue(null, null, "Error obteniendo la persona de BD");
 		}
 		
-		if (errores.size() == 0) { // success
-			PersonaForm personaForm = getPersonaForm();
+		if (!result.hasErrors()) { // success
 			personaForm.setId(p.getId());
 			personaForm.setNombre(p.getNombre());
 			personaForm.setApellido(p.getApellido());
 			personaForm.setFechaNacimiento(p.getFechaNacimiento());
-			
-			model.addAttribute("personaForm", personaForm);
-		} else { // error
-			model.addAttribute("errores", errores);
-		}
+		} 
 		
 		init(model);
 		return "forward:/WEB-INF/jsp/persona/inicio.jsp";

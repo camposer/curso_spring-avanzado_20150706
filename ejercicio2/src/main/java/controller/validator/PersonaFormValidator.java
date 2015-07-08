@@ -19,12 +19,12 @@ public class PersonaFormValidator implements Validator {
 		if (personaForm.getNombre() == null || 
 				personaForm.getNombre().trim().equals("") || 
 				personaForm.getNombre().trim().length() < 3)
-			errores.rejectValue("nombre", "Nombre inválido");
+			errores.rejectValue("nombre", null, "Nombre inválido");
 		
 		if (personaForm.getApellido() == null || 
 				personaForm.getApellido().trim().equals("") || 
 				personaForm.getApellido().trim().length() < 3)
-			errores.rejectValue("apellido", "Apellido inválido");
+			errores.rejectValue("apellido", null, "Apellido inválido");
 	}
 	
 }

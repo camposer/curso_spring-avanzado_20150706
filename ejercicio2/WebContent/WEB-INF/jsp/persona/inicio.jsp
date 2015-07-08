@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,20 +18,12 @@
 		<form:form cssClass="form-horizontal" 
 				action="guardar.do" method="post" commandName="personaForm">
 			<form:hidden path="id"/>
-		
-			<c:if test="${not empty errores}">
-				<form:errors path="*"></form:errors>	
-			</c:if>	
 
-			<c:if test="${not empty errores}">
-				<div class="form-group">
-					<div class="alert alert-danger" role="alert">
-						<c:forEach var="e" items="${errores}">
-							${e}<br>
-						</c:forEach>			
-					</div>
+			<s:hasBindErrors name="personaForm">		
+				<div class="alert alert-danger" role="alert">
+					<form:errors path="*"/>
 				</div>	
-			</c:if>	
+			</s:hasBindErrors>
 
 			<div class="form-group">
 				<label for="nombre" class="col-sm-2 control-label">Nombre</label>
