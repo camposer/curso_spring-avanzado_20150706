@@ -13,11 +13,21 @@
 	<div class="container">
 		<h1>Personas</h1>
 
-		<form class="form-horizontal">
+		<form class="form-horizontal" action="agregar.do" method="post">
+			<c:if test="${not empty errores}">
+				<div class="form-group">
+					<div class="alert alert-danger" role="alert">
+						<c:forEach var="e" items="${errores}">
+							${e}<br>
+						</c:forEach>			
+					</div>
+				</div>	
+			</c:if>	
+
 			<div class="form-group">
 				<label for="nombre" class="col-sm-2 control-label">Nombre</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nombre"
+					<input type="text" class="form-control" id="nombre" name="nombre" value="${personaForm.nombre}"
 						placeholder="Nombre">
 				</div>
 			</div>
@@ -25,7 +35,7 @@
 			<div class="form-group">
 				<label for="apellido" class="col-sm-2 control-label">Apellido</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="apellido"
+					<input type="text" class="form-control" id="apellido" name="apellido" value="${personaForm.apellido}"
 						placeholder="Apellido">
 				</div>
 			</div>
@@ -35,8 +45,8 @@
 					de nacimiento</label>
 				
 				<div class="col-sm-10">
-					<input type="text" class="form-control datepicker active" id="fechaNacimiento"
-						placeholder="Fecha de nacimiento" data-date-format="yyyy-mm-dd" readonly="readonly">
+					<input type="text" class="form-control datepicker active" id="fechaNacimiento" name="fechaNacimiento"
+						placeholder="Fecha de nacimiento" data-date-format="yyyy-mm-dd" readonly="readonly" value="${personaForm.fechaNacimiento}">
 				</div>
 			</div>
 

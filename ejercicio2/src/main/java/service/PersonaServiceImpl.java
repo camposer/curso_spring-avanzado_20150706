@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.PersonaDao;
 import model.Persona;
@@ -14,16 +15,19 @@ public class PersonaServiceImpl implements PersonaService {
 	private PersonaDao personaDao;
 	
 	@Override
+	@Transactional
 	public void agregarPersona(Persona p) {
 		personaDao.agregar(p);
 	}
 
 	@Override
+	@Transactional
 	public void modificarPersona(Persona p) {
 		personaDao.modificar(p);
 	}
 
 	@Override
+	@Transactional
 	public void eliminarPersona(Integer id) {
 		personaDao.eliminar(id);
 	}
