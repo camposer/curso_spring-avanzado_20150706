@@ -13,7 +13,9 @@
 	<div class="container">
 		<h1>Personas</h1>
 
-		<form class="form-horizontal" action="agregar.do" method="post">
+		<form class="form-horizontal" action="guardar.do" method="post">
+			<input type="text" name="id" value="${personaForm.id}">
+		
 			<c:if test="${not empty errores}">
 				<div class="form-group">
 					<div class="alert alert-danger" role="alert">
@@ -74,8 +76,8 @@
 					<td>${p.nombre}</td>
 					<td>${p.apellido}</td>
 					<td>${p.fechaNacimiento}</td>
-					<td><a href="#">mostrar</a></td>
-					<td><a href="#">eliminar</a></td>
+					<td><a href="mostrar.do?id=${p.id}">mostrar</a></td>
+					<td><a href="eliminar.do?id=${p.id}" onclick="return confirm('Eliminar?')">eliminar</a></td>
 				</tr>
 			</c:forEach>
 		</table>
