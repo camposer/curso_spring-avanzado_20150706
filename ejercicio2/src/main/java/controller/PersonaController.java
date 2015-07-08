@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import model.Persona;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,11 +54,7 @@ public class PersonaController {
 			BindingResult result) {
 		
 		if (!result.hasErrors()) { 
-			Persona p = new Persona();
-			p.setId(personaForm.getId());
-			p.setNombre(personaForm.getNombre());
-			p.setApellido(personaForm.getApellido());
-			p.setFechaNacimiento(personaForm.getFechaNacimiento());
+			Persona p = new ModelMapper().map(personaForm, Persona.class);
 
 			try {
 				if (p.getId() == null)
@@ -117,10 +114,7 @@ public class PersonaController {
 		}
 		
 		if (!result.hasErrors()) { // success
-			personaForm.setId(p.getId());
-			personaForm.setNombre(p.getNombre());
-			personaForm.setApellido(p.getApellido());
-			personaForm.setFechaNacimiento(p.getFechaNacimiento());
+			new ModelMapper().map(p, personaForm);
 		} 
 		
 		init(model);
