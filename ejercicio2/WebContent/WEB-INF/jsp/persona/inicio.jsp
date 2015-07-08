@@ -64,6 +64,7 @@
 				<th>Nombre</th>
 				<th>Apellido</th>
 				<th>Fecha de nacimiento</th>
+				<th>Ordenadores</th>
 				<th>Mostrar</th>
 				<th>Eliminar</th>
 			</tr>
@@ -73,6 +74,11 @@
 					<td>${p.nombre}</td>
 					<td>${p.apellido}</td>
 					<td>${p.fechaNacimiento}</td>
+					<td>
+						<c:forEach var="o" items="${p.ordenadores}">
+							${o.nombre} - ${o.serial}<br>
+						</c:forEach>
+					</td>
 					<td><a href="mostrar.do?id=${p.id}">mostrar</a></td>
 					<td><a href="eliminar.do?id=${p.id}" onclick="return confirm('Eliminar?')">eliminar</a></td>
 				</tr>
