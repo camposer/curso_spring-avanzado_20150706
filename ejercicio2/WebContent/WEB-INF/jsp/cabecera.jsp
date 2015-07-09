@@ -17,6 +17,7 @@
             <li class="active"><a href="/ejercicio2/inicio.do">Inicio</a></li>
             <li><a href="/ejercicio2/persona/inicio.do">Persona</a></li>
             <li><a href="/ejercicio2/ordenador/inicio.do">Ordenador</a></li>
+            <li><a href="/ejercicio2/rest.jsp">Probador Rest</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
