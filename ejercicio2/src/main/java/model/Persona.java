@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 /**
@@ -48,6 +50,10 @@ public class Persona implements Serializable {
 	public Persona() {
 	}
 
+	public Persona(Integer id) {
+		this.id = id;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}
@@ -76,6 +82,11 @@ public class Persona implements Serializable {
 		return this.nombre;
 	}
 
+	@Transient
+	public String getNombreCompleto() {
+		return this.nombre + " " + this.apellido;
+	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -102,4 +113,12 @@ public class Persona implements Serializable {
 		return ordenadore;
 	}
 
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", apellido=" + apellido
+				+ ", fechaNacimiento=" + fechaNacimiento + ", nombre=" + nombre
+				+  "]";
+	}
+
+	
 }

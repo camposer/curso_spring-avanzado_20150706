@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class InicioController {
 	@RequestMapping("/inicio")
 	public String inicio() {
-		return "redirect:/persona/inicio.do";
+		return "forward:/WEB-INF/jsp/inicio.jsp";
 	}
 }

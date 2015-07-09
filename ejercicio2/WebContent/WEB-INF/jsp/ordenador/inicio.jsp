@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Personas</title>
+<title>Ordenaadores</title>
 
 <link rel="stylesheet" href="/ejercicio2/css/bootstrap.css">
 </head>
@@ -16,13 +16,13 @@
 	<%@ include file="/WEB-INF/jsp/cabecera.jsp" %>
     
 	<div class="container">
-		<h1>Personas</h1>
+		<h1>Ordenadores</h1>
 
 		<form:form cssClass="form-horizontal" 
-				action="guardar.do" method="post" commandName="personaForm">
+				action="guardar.do" method="post" commandName="ordenadorForm">
 			<form:hidden path="id"/>
 
-			<s:hasBindErrors name="personaForm">		
+			<s:hasBindErrors name="ordenadorForm">		
 				<div class="alert alert-danger" role="alert">
 					<form:errors path="*"/>
 				</div>	
@@ -36,19 +36,28 @@
 			</div>
 
 			<div class="form-group">
-				<label for="apellido" class="col-sm-2 control-label">Apellido</label>
+				<label for="serial" class="col-sm-2 control-label">Serial</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="apellido" name="apellido" value="${personaForm.apellido}"
-						placeholder="Apellido">
+					<form:input path="serial" cssClass="form-control" placeholder="Serial" />
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="fechaNacimiento" class="col-sm-2 control-label">Fecha
-					de nacimiento</label>
-				
+				<label for="duenio" class="col-sm-2 control-label">Dueño</label>
 				<div class="col-sm-10">
-					<form:input path="fechaNacimiento" cssClass="form-control datepicker active" placeholder="Fecha de nacimiento" readonly="readonly" data-date-format="yyyy-mm-dd" />
+					<select name="personaId">
+						<option value=""></option>
+						<c:forEach var="p" items="${personas}">
+							<c:set var="selected" value=""/>
+							<c:if test="${p.id == ordenadorForm.personaId}">
+								<c:set var="selected" value="selected"/>
+							</c:if>
+							
+							<option value="${p.id}" ${selected}>					
+								${p.nombreCompleto}
+							</option>
+						</c:forEach>
+					</select>
 				</div>
 			</div>
 
@@ -65,25 +74,19 @@
 			<tr>
 				<th>Id</th>
 				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>Fecha de nacimiento</th>
-				<th>Ordenadores</th>
+				<th>Serial</th>
+				<th>Dueño</th>
 				<th>Mostrar</th>
 				<th>Eliminar</th>
 			</tr>
-			<c:forEach var="p" items="${personas}">
+			<c:forEach var="o" items="${ordenadores}">
 				<tr>
-					<td>${p.id}</td>
-					<td>${p.nombre}</td>
-					<td>${p.apellido}</td>
-					<td>${p.fechaNacimiento}</td>
-					<td>
-						<c:forEach var="o" items="${p.ordenadores}">
-							${o.nombre} - ${o.serial}<br>
-						</c:forEach>
-					</td>
-					<td><a href="mostrar.do?id=${p.id}">mostrar</a></td>
-					<td><a href="eliminar.do?id=${p.id}" onclick="return confirm('Eliminar?')">eliminar</a></td>
+					<td>${o.id}</td>
+					<td>${o.nombre}</td>
+					<td>${o.serial}</td>
+					<td>${o.persona.nombreCompleto}</td>
+					<td><a href="mostrar.do?id=${o.id}">mostrar</a></td>
+					<td><a href="eliminar.do?id=${o.id}" onclick="return confirm('Eliminar?')">eliminar</a></td>
 				</tr>
 			</c:forEach>
 		</table>
