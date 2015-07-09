@@ -5,75 +5,52 @@
 	<script src="/ejercicio2/js/jquery.js"></script>
 	<meta charset="utf-8">
 	<script>
-		const
-		URL_BASE = "/ejercicio2/api/personas";
-	
-		var obtenerTodos = function() {
-			var settings = { // ParÃ¡metros de configuraciÃ³n
-				type : 'GET',
-				dataType : 'json' // Tipo de dato de retorno
-			};
-	
-			var ajax = $.ajax(URL_BASE, settings); // PeticiÃ³n AJAX
-	
-			ajax.done(function(productos) { // Callback de respuesta
-				$("#respuesta").html(JSON.stringify(productos));
-			});
-		};
-	
-		var obtener = function() {
-			var id = $("#param").val();
-	
-			$.ajax(URL_BASE + "/" + id, {
+		var consultar = function() {
+			$.ajax($("#url").val(), {
 				type : 'GET',
 				dataType : 'json'
-			}).done(function(producto) {
-				$("#respuesta").html(JSON.stringify(producto));
+			}).done(function(resp) {
+				$("#respuesta").html(JSON.stringify(resp));
 			});
 		};
 	
 		var eliminar = function() {
-			var id = $("#param").val();
-	
-			$.ajax(URL_BASE + "/" + id, {
-				type : 'DELETE'
-			}).done(function(producto) {
-				$("#respuesta").html("Elemento eliminado");
+			$.ajax($("#url").val(), {
+				type : 'DELETE',
+				dataType : 'json'
+			}).done(function(resp) {
+				$("#respuesta").html(JSON.stringify(resp));
 			});
 		};
 	
 		var agregar = function() {
-			var mensaje = $("#mensaje").val();
-	
-			$.ajax(URL_BASE, {
+			$.ajax($("#url").val(), {
 				type : 'POST',
-				data : mensaje,
-				contentType : 'application/json' // Tipo de dato enviado
-			}).done(function(respuesta) {
-				$("#respuesta").html("Elemento agregado");
+				data : $("#mensaje").val(),
+				contentType : 'application/json', // Tipo de dato enviado
+				dataType : 'json'
+			}).done(function(resp) {
+				$("#respuesta").html(JSON.stringify(resp));
 			});
 		};
 	
 		var modificar = function() {
-			var mensaje = $("#mensaje").val();
-			var id = $("#param").val();
-	
-			$.ajax(URL_BASE + "/" + id, {
+			$.ajax($("#url").val(), {
 				type : 'PUT',
-				data : mensaje,
-				contentType : 'application/json' // Tipo de dato enviado
-			}).done(function(respuesta) {
-				$("#respuesta").html("Elemento modificado");
+				data : $("#mensaje").val(),
+				contentType : 'application/json', // Tipo de dato enviado
+				dataType : 'json'
+			}).done(function(resp) {
+				$("#respuesta").html(JSON.stringify(resp));
 			});
 	
 		};
 	
 		$(document).ready(function() {
-			$("#obtenerTodos").click(obtenerTodos);
-			$("#obtener").click(obtener);
-			$("#eliminar").click(eliminar);
-			$("#agregar").click(agregar);
-			$("#modificar").click(modificar);
+			$("#get").click(consultar);
+			$("#delete").click(eliminar);
+			$("#post").click(agregar);
+			$("#put").click(modificar);
 		});
 	</script>
 	<link rel="stylesheet" href="/ejercicio2/css/bootstrap.css">
@@ -87,9 +64,9 @@
 		
 		<form class="form-horizontal">
 			<div class="form-group">
-				<label for="param" class="col-sm-2 control-label">Parámetro URL</label>
+				<label for="param" class="col-sm-2 control-label">URL</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" placeholder="Parámetro URL" id="param" />
+					<input type="text" class="form-control" placeholder="/ejercicio2/api/personas" id="url" />
 				</div>
 			</div>
 
@@ -102,11 +79,10 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="button" class="btn btn-default" id="obtenerTodos">Obtener todos</button>
-					<button type="button" class="btn btn-default" id="obtener">Obtener</button>
-					<button type="button" class="btn btn-default" id="agregar">Agregar</button>
-					<button type="button" class="btn btn-default" id="modificar">Modificar</button>
-					<button type="button" class="btn btn-default" id="eliminar">Eliminar</button>
+					<button type="button" class="btn btn-default" id="get">GET</button>
+					<button type="button" class="btn btn-default" id="post">POST</button>
+					<button type="button" class="btn btn-default" id="put">PUT</button>
+					<button type="button" class="btn btn-default" id="delete">DELETE</button>
 				</div>
 			</div>
 		</form>
