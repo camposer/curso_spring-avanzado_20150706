@@ -1,0 +1,6 @@
+Cómo API Rest
+=============
+
+- Habilitar WebMvc en el contexto de Spring. Mediante la anotación @EnableWebMvc o la etiqueta XML <mvc:annotation-driven/>
+- Si se utilizará JSON como formato de intermcabio de información agregar al POM jackson-databind
+- En los controladores indicar el método HTTP y los formatos de produces y consumes (Ej. application/json y/o text/xml)
