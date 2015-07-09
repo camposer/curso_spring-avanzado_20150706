@@ -29,6 +29,8 @@ Curso de Spring Avanzado
 	- http://stackoverflow.com/questions/578433/how-to-solve-lazy-initialization-exception-using-jpa-and-hibernate-as-provider
 - Curso de Spring MVC
 	- https://github.com/camposer/curso_springmvc
+- REST-ful URI design
+	- http://blog.2partsmagic.com/restful-uri-design/
 - Curso de Testing (con Spring)
 	- https://github.com/camposer/curso_testing
 - JUnit (incluye ejemplos, etc)

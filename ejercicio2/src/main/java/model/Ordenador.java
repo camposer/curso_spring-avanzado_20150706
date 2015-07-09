@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -28,6 +31,7 @@ public class Ordenador implements Serializable {
 	//bi-directional many-to-one association to Persona
 	@ManyToOne
 	@JoinColumn(name="PERSONA_ID", nullable=false)
+	@JsonIgnore
 	private Persona persona;
 
 	public Ordenador() {
