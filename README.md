@@ -25,6 +25,8 @@ Curso de Spring Avanzado
 	- http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/index.html
 - Curso de Spring y JPA/Hibernate
 	- https://github.com/camposer/curso_spring-hibernate
+- How to solve lazy initialization exception using JPA and Hibernate as provider
+	- http://stackoverflow.com/questions/578433/how-to-solve-lazy-initialization-exception-using-jpa-and-hibernate-as-provider
 - Curso de Spring MVC
 	- https://github.com/camposer/curso_springmvc
 - Curso de Testing (con Spring)

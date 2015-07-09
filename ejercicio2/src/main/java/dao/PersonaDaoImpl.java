@@ -13,7 +13,6 @@ public class PersonaDaoImpl
 
 	@Override
 	public List<Persona> obtenerMayoresDeEdad() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
