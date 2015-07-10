@@ -5,6 +5,7 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 
 import aop.advice.CustomLogMethodInterpcetor;
@@ -12,6 +13,7 @@ import aop.pointcut.CustomLogPointcut;
 import dao.PersonaDao;
 
 @Configuration
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @PropertySource("classpath:app.properties")
 public class AopConfig {
 	@Value("#{personaDaoImpl}") // spEL
@@ -19,6 +21,7 @@ public class AopConfig {
 	@Value("${logger.file.path}") // propiedad
 	private String loggerFilePath;
 	
+	/*
     @Bean
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
     	DefaultAdvisorAutoProxyCreator advisor = 
@@ -26,7 +29,7 @@ public class AopConfig {
     	advisor.setProxyTargetClass(true);
     	return advisor;
     }
-    
+    */
 	@Bean
 	public CustomLogPointcut customLogPointcut() {
 		return new CustomLogPointcut();

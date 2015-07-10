@@ -40,7 +40,6 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 		return entityManager.find(clazz, id);
 	}
 
-	@CustomLog
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<E> obtenerTodos() {

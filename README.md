@@ -54,8 +54,8 @@ Curso de Spring Avanzado
 		- http://docs.spring.io/spring/docs/current/spring-framework-reference/html/scheduling.html
 	- Spring and Java Thread example (mkyong)
 		- http://www.mkyong.com/spring/spring-and-java-thread-example/
-	- Spring Batch + Spring TaskScheduler example
-		- http://www.mkyong.com/spring-batch/spring-batch-and-spring-taskscheduler-example/
+	- 4 ways to schedule tasks in Spring 3 : @Scheduled example
+		- http://howtodoinjava.com/2013/04/23/4-ways-to-schedule-tasks-in-spring-3-scheduled-example/
 - Simple Spring JMS
 	- http://www.springbyexample.org/examples/simple-spring-jms.html
 - Remoting and web service using Spring
