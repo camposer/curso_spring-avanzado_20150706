@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import annotation.CustomLog;
+
 public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 	@PersistenceContext // Gestiona el entityManager (no transacciones!!!)
 	protected EntityManager entityManager;
@@ -38,6 +40,7 @@ public abstract class GenericDaoImpl<E, K> implements GenericDao<E, K> {
 		return entityManager.find(clazz, id);
 	}
 
+	@CustomLog
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<E> obtenerTodos() {
