@@ -2,6 +2,8 @@ package advice;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.Date;
 
 import org.aopalliance.intercept.MethodInterceptor;
@@ -16,9 +18,8 @@ public class LoggerMethodInterpcetor implements MethodInterceptor {
 
 	@Override
 	public Object invoke(MethodInvocation metodo) throws Throwable {
-		PrintWriter pw = new PrintWriter(new File(loggerFilePath));
-		pw.println(getTrace(metodo));
-		pw.close();
+		Files.write(new File("/home/camposer/logger.log").toPath(), 
+				getTrace(metodo).getBytes(), StandardOpenOption.APPEND);
 		
 		return metodo.proceed();
 	}
@@ -36,7 +37,7 @@ public class LoggerMethodInterpcetor implements MethodInterceptor {
 		
 		return "[ método = " + nombreMetodo +
 				", argumentos = " + argumentos + 
-				", " + marcaTiempo + " ]";
+				", " + marcaTiempo + " ]\n";
 	}
 
 }

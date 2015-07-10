@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import model.Ordenador;
 import model.Persona;
 
@@ -15,7 +17,7 @@ import dao.PersonaDao;
 public class OrdenadorServiceImpl implements OrdenadorService {
 	@Autowired
 	private OrdenadorDao ordenadorDao;
-	@Autowired
+	@Resource(name = "personaDaoProxy") 
 	private PersonaDao personaDao;
 
 	@Override

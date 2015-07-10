@@ -2,8 +2,6 @@ package service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import model.Ordenador;
 import model.Persona;
 
@@ -15,7 +13,7 @@ import dao.PersonaDao;
 
 @Service
 public class PersonaServiceImpl implements PersonaService {
-	@Resource(name = "personaDaoProxy")
+	@Autowired
 	private PersonaDao personaDao;
 	@Autowired
 	private OrdenadorDao ordenadorDao;

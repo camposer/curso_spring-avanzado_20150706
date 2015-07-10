@@ -11,7 +11,7 @@ import advice.LoggerMethodInterpcetor;
 import dao.PersonaDao;
 
 @Configuration
-@PropertySource("classpath:/app.properties")
+@PropertySource("classpath:app.properties")
 public class AopConfig {
 	@Value("#{personaDaoImpl}") // spEL
 	private PersonaDao personaDao;
