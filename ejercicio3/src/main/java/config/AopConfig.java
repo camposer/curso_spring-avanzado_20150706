@@ -1,7 +1,6 @@
 package config;
 
 import org.springframework.aop.framework.ProxyFactoryBean;
-import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,16 +20,7 @@ public class AopConfig {
 	@Value("${logger.file.path}") // propiedad
 	private String loggerFilePath;
 	
-	/*
     @Bean
-    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
-    	DefaultAdvisorAutoProxyCreator advisor = 
-    			new DefaultAdvisorAutoProxyCreator();
-    	advisor.setProxyTargetClass(true);
-    	return advisor;
-    }
-    */
-	@Bean
 	public CustomLogPointcut customLogPointcut() {
 		return new CustomLogPointcut();
 	}

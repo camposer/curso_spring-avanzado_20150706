@@ -19,17 +19,26 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
+		<!-- Spring AOP -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
+		<!-- AspectJ Runtime y Tools -->
 		<dependency>
-	<groupId>org.aspectj</groupId>
-	<artifactId>aspectjrt</artifactId>
-	<version>1.7.3</version>
-</dependency>
-		
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjtools</artifactId>
+			<version>1.8.6</version>
+		</dependency>
+
 
 		<!-- Spring ORM @PersistenceContext @Transactional -->
 		<dependency>
