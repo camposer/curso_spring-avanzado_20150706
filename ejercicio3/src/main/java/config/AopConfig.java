@@ -1,14 +1,15 @@
 package config;
 
-import org.aopalliance.intercept.MethodInterceptor;
 import org.springframework.aop.framework.ProxyFactoryBean;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.aop.support.AbstractPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
-import advice.LoggerMethodInterpcetor;
+import aop.advice.CustomLogMethodInterpcetor;
+import aop.pointcut.CustomLogPointcut;
 import dao.PersonaDao;
 
 @Configuration
@@ -19,22 +20,30 @@ public class AopConfig {
 	@Value("${logger.file.path}") // propiedad
 	private String loggerFilePath;
 	
+    @Bean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+    	DefaultAdvisorAutoProxyCreator advisor = 
+    			new DefaultAdvisorAutoProxyCreator();
+    	advisor.setProxyTargetClass(true);
+    	return advisor;
+    }
+    
 	@Bean
-	public MethodInterceptor loggerMethodInterpcetor() {
-		return new LoggerMethodInterpcetor(loggerFilePath);
+	public CustomLogPointcut customLogPointcut() {
+		return new CustomLogPointcut();
+	}
+
+	@Bean
+	public CustomLogMethodInterpcetor customLogMethodInterceptor() {
+		return new CustomLogMethodInterpcetor(loggerFilePath);
 	}
 	
 	@Bean
 	public ProxyFactoryBean personaDaoProxy() {
 		ProxyFactoryBean proxy = new ProxyFactoryBean();
 		proxy.setTarget(personaDao);
-		proxy.setInterceptorNames("loggerMethodInterpcetor");
+		proxy.setInterceptorNames("customLogMethodInterceptor");
 		
 		return proxy;
 	}
-	
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-       return new PropertySourcesPlaceholderConfigurer();
-    }	
 }

@@ -1,4 +1,4 @@
-package advice;
+package aop.advice;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -8,10 +8,10 @@ import java.util.Date;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
-public class LoggerMethodInterpcetor implements MethodInterceptor {
+public class CustomLogMethodInterpcetor implements MethodInterceptor {
 	private String loggerFilePath;
 	
-	public LoggerMethodInterpcetor(String loggerFilePath) {
+	public CustomLogMethodInterpcetor(String loggerFilePath) {
 		this.loggerFilePath = loggerFilePath;
 	}
 
