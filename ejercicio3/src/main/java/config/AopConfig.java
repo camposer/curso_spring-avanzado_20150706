@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import advice.LoggerMethodInterpcetor;
 import dao.PersonaDao;
@@ -15,7 +16,7 @@ import dao.PersonaDao;
 public class AopConfig {
 	@Value("#{personaDaoImpl}") // spEL
 	private PersonaDao personaDao;
-	@Value("${loggerFilePath}") // propiedad
+	@Value("${logger.file.path}") // propiedad
 	private String loggerFilePath;
 	
 	@Bean
@@ -31,4 +32,9 @@ public class AopConfig {
 		
 		return proxy;
 	}
+	
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+       return new PropertySourcesPlaceholderConfigurer();
+    }	
 }

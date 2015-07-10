@@ -1,7 +1,6 @@
 package advice;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.Date;
@@ -18,8 +17,8 @@ public class LoggerMethodInterpcetor implements MethodInterceptor {
 
 	@Override
 	public Object invoke(MethodInvocation metodo) throws Throwable {
-		Files.write(new File("/home/camposer/logger.log").toPath(), 
-				getTrace(metodo).getBytes(), StandardOpenOption.APPEND);
+		Files.write(new File(loggerFilePath).toPath(), 
+				getTrace(metodo).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
 		
 		return metodo.proceed();
 	}
