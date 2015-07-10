@@ -10,19 +10,6 @@
 				type : 'GET',
 				dataType : 'json' // Lo que retorna
 			}).done(function(resp) {
-				if (resp.success) {
-					for (var i in resp.data) {
-						var p = resp.data[i];
-						var texto = p.nombre + " " + p.apellido;
-						for (var j in p.ordenadores)
-							texto += " " + p.ordenadores[j].nombre;
-						
-						window.alert(texto);
-					}
-					
-				}
-				
-				
 				$("#respuesta").html(JSON.stringify(resp));
 			});
 		};
