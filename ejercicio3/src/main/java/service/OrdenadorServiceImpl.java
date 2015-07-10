@@ -6,7 +6,6 @@ import model.Ordenador;
 import model.Persona;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ import dao.PersonaDao;
 public class OrdenadorServiceImpl implements OrdenadorService {
 	@Autowired
 	private OrdenadorDao ordenadorDao;
-	@Value("#{personaDaoProxy}")
+	@Autowired
 	private PersonaDao personaDao;
 
 	@Override
