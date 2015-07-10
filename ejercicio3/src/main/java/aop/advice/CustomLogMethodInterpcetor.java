@@ -24,6 +24,8 @@ public class CustomLogMethodInterpcetor implements MethodInterceptor {
 	}
 
 	private String getTrace(MethodInvocation metodo) {
+		String nombreClase = metodo.getThis().getClass().getName();
+
 		String nombreMetodo = metodo.getMethod().getName();
 		
 		String argumentos = "[ ";
@@ -34,7 +36,8 @@ public class CustomLogMethodInterpcetor implements MethodInterceptor {
 		
 		long marcaTiempo = new Date().getTime();
 		
-		return "[ método = " + nombreMetodo +
+		return "[ clase = " + nombreClase + 
+				", método = " + nombreMetodo +
 				", argumentos = " + argumentos + 
 				", " + marcaTiempo + " ]\n";
 	}

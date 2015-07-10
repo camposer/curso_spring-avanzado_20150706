@@ -2,7 +2,6 @@ package config;
 
 import org.springframework.aop.framework.ProxyFactoryBean;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.aop.support.AbstractPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
